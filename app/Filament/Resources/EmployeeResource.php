@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Enums\GroupList;
+use App\Enums\EchelonList;
 
 class EmployeeResource extends Resource
 {
@@ -54,10 +55,10 @@ class EmployeeResource extends Resource
                     ->label('Golongan')
                     ->required()
                     ->options(GroupList::class),
-                Forms\Components\TextInput::make('echelon')
+                Forms\Components\Select::make('echelon')
                     ->label('Eselon')
                     ->required()
-                    ->maxLength(255),
+                    ->options(EchelonList::class),
                 Forms\Components\TextInput::make('position')
                     ->label('Jabatan')
                     ->required()
