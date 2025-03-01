@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Enums\GroupList;
 
 class EmployeeResource extends Resource
 {
@@ -49,10 +50,10 @@ class EmployeeResource extends Resource
                         'Male' => 'Laki-laki',
                         'Female' => 'Perempuan',
                     ]),
-                Forms\Components\TextInput::make('group')
+                Forms\Components\Select::make('group')
                     ->label('Golongan')
                     ->required()
-                    ->maxLength(255),
+                    ->options(GroupList::class),
                 Forms\Components\TextInput::make('echelon')
                     ->label('Eselon')
                     ->required()
