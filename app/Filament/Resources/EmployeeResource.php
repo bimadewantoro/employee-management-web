@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Enums\GroupList;
 use App\Enums\EchelonList;
+use App\Enums\ReligionList;
 
 class EmployeeResource extends Resource
 {
@@ -67,10 +68,10 @@ class EmployeeResource extends Resource
                     ->label('Tempat Tugas')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('religion')
+                Forms\Components\Select::make('religion')
                     ->label('Agama')
                     ->required()
-                    ->maxLength(255),
+                    ->options(ReligionList::class),
                 Forms\Components\TextInput::make('work_unit')
                     ->label('Unit Kerja')
                     ->required()
