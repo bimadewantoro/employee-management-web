@@ -42,10 +42,13 @@ class EmployeeResource extends Resource
                     ->label('Alamat')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('gender')
+                Forms\Components\Select::make('gender')
                     ->label('Jenis Kelamin')
                     ->required()
-                    ->maxLength(255),
+                    ->options([
+                        'Male' => 'Laki-laki',
+                        'Female' => 'Perempuan',
+                    ]),
                 Forms\Components\TextInput::make('group')
                     ->label('Golongan')
                     ->required()
