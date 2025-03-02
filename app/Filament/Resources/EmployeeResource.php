@@ -20,7 +20,11 @@ class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-group';
+
+    protected static ?string $pluralLabel = 'Employees Data';
+
+    protected static ?string $navigationGroup = 'Employees Management';
 
     public static function form(Form $form): Form
     {
@@ -55,7 +59,8 @@ class EmployeeResource extends Resource
                 Forms\Components\Select::make('group')
                     ->label('Golongan')
                     ->required()
-                    ->options(GroupList::class),
+                    ->options(GroupList::class)
+                    ->searchable(),
                 Forms\Components\Select::make('echelon')
                     ->label('Eselon')
                     ->required()
@@ -85,6 +90,14 @@ class EmployeeResource extends Resource
                     ->label('NPWP')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('profile_picture')
+                    ->label('Foto Pegawai')
+                    ->image()
+                    ->maxSize(2048)
+                    ->imageCropAspectRatio('3:4')
+                    ->imageResizeTargetWidth(300)
+                    ->imageResizeTargetHeight(400)
+                    ->openable(),
             ]);
     }
 
@@ -97,38 +110,48 @@ class EmployeeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\ImageColumn::make('profile_picture')
+                    ->label('Foto Profil'),
                 Tables\Columns\TextColumn::make('birth_place')
                     ->label('Tempat Lahir')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('birth_date')
                     ->label('Tanggal Lahir')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('address')
                     ->label('Alamat')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('gender')
                     ->label('Jenis Kelamin')
-                    ->searchable(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('group')
                     ->label('Golongan')
-                    ->searchable(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('echelon')
                     ->label('Eselon')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('position')
                     ->label('Jabatan')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('place_of_duty')
                     ->label('Tempat Tugas')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('religion')
                     ->label('Agama')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('work_unit')
                     ->label('Unit Kerja')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('phone_number')
                     ->label('Nomor Telepon')
                     ->searchable(),
@@ -145,10 +168,30 @@ class EmployeeResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('gender')
+                    ->label('Jenis Kelamin')
+                    ->options([
+                        'Male' => 'Laki-laki',
+                        'Female' => 'Perempuan',
+                    ]),
+                Tables\Filters\SelectFilter::make('group')
+                    ->label('Golongan')
+                    ->options(GroupList::class)
+                    ->multiple()
+                    ->searchable(),
+                Tables\Filters\SelectFilter::make('echelon')
+                    ->label('Eselon')
+                    ->multiple()
+                    ->options(EchelonList::class),
+                Tables\Filters\SelectFilter::make('religion')
+                    ->label('Agama')
+                    ->multiple()
+                    ->options(ReligionList::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
