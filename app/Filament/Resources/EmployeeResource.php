@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Enums\GroupList;
 use App\Enums\EchelonList;
 use App\Enums\ReligionList;
+use AlperenErsoy\FilamentExport\Actions\FilamentExportHeaderAction;
+use AlperenErsoy\FilamentExport\Actions\FilamentExportBulkAction;
 
 class EmployeeResource extends Resource
 {
@@ -113,7 +115,8 @@ class EmployeeResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('profile_picture')
-                    ->label('Foto Profil'),
+                    ->label('Foto Profil')
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('birth_place')
                     ->label('Tempat Lahir')
                     ->searchable()
@@ -197,6 +200,12 @@ class EmployeeResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                FilamentExportBulkAction::make('export')
+                    ->label('Export Selected Data'),
+            ])
+            ->headerActions([
+                FilamentExportHeaderAction::make('export')
+                    ->label('Export Data'),
             ]);
     }
 
