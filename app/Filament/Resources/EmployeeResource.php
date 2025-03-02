@@ -164,7 +164,22 @@ class EmployeeResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('gender')
+                    ->label('Jenis Kelamin')
+                    ->options([
+                        'Male' => 'Laki-laki',
+                        'Female' => 'Perempuan',
+                    ]),
+                Tables\Filters\SelectFilter::make('group')
+                    ->label('Golongan')
+                    ->options(GroupList::class)
+                    ->searchable(),
+                Tables\Filters\SelectFilter::make('echelon')
+                    ->label('Eselon')
+                    ->options(EchelonList::class),
+                Tables\Filters\SelectFilter::make('religion')
+                    ->label('Agama')
+                    ->options(ReligionList::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
