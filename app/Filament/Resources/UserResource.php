@@ -39,6 +39,9 @@ class UserResource extends Resource
                     ->password()
                     ->revealable()
                     ->maxLength(255),
+                Forms\Components\Select::make('roles')
+                    ->relationship('roles', 'name')
+                    ->preload(),
             ]);
     }
 
