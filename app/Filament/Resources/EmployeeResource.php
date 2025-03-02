@@ -235,4 +235,11 @@ class EmployeeResource extends Resource
     {
         return (string) static::$model::count();
     }
+
+    public static function getWidgets(): array
+    {
+        return [
+            EmployeeResource\Widgets\EmployeeOverview::class,
+        ];
+    }
 }

@@ -10,6 +10,7 @@
         "alperenersoy/filament-export": "^3.0",
         "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
+        "filament/widgets": "^3.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.10.1"
     },

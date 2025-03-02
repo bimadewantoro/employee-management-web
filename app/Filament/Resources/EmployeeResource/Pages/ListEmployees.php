@@ -16,4 +16,11 @@ class ListEmployees extends ListRecords
             Actions\CreateAction::make()->label('Add Employee'),
         ];
     }
+
+    protected function getHeaderWidgets(): array
+    {
+        return [
+            EmployeeResource\Widgets\EmployeeOverview::class,
+        ];
+    }
 }
