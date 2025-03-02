@@ -173,12 +173,15 @@ class EmployeeResource extends Resource
                 Tables\Filters\SelectFilter::make('group')
                     ->label('Golongan')
                     ->options(GroupList::class)
+                    ->multiple()
                     ->searchable(),
                 Tables\Filters\SelectFilter::make('echelon')
                     ->label('Eselon')
+                    ->multiple()
                     ->options(EchelonList::class),
                 Tables\Filters\SelectFilter::make('religion')
                     ->label('Agama')
+                    ->multiple()
                     ->options(ReligionList::class),
             ])
             ->actions([
