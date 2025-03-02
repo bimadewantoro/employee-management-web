@@ -17,11 +17,11 @@ class EmployeeOverview extends BaseWidget
                 ->color('success'),
             Stat::make('Total Male Employees', Employee::where('gender', 'Male')->count())
                 ->description('Total number of male employees')
-                ->descriptionIcon('heroicon-m-user')
+                ->descriptionIcon('heroicon-m-user-minus')
                 ->color('info'),
             Stat::make('Total Female Employees', Employee::where('gender', 'Female')->count())
                 ->description('Total number of female employees')
-                ->descriptionIcon('heroicon-m-user')
+                ->descriptionIcon('heroicon-m-user-plus')
                 ->color('info'),
         ];
     }

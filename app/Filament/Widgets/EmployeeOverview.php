@@ -21,7 +21,7 @@ class EmployeeOverview extends BaseWidget
                 ->color('success'),
             Stat::make('Total Users', $totalUsers)
                 ->description('Total number of users')
-                ->descriptionIcon('heroicon-o-user')
+                ->descriptionIcon('heroicon-m-users')
                 ->color('success'),
         ];
     }
