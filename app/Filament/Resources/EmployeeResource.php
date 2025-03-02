@@ -86,6 +86,14 @@ class EmployeeResource extends Resource
                     ->label('NPWP')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\FileUpload::make('profile_picture')
+                    ->label('Foto Pegawai')
+                    ->image()
+                    ->maxSize(2048)
+                    ->imageCropAspectRatio('3:4')
+                    ->imageResizeTargetWidth(300)
+                    ->imageResizeTargetHeight(400)
+                    ->openable(),
             ]);
     }
 
@@ -100,6 +108,8 @@ class EmployeeResource extends Resource
                     ->label('Nama')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\ImageColumn::make('profile_picture')
+                    ->label('Foto Profil'),
                 Tables\Columns\TextColumn::make('birth_place')
                     ->label('Tempat Lahir')
                     ->searchable()

@@ -26,5 +26,6 @@ class Employee extends Model
         'work_unit',
         'phone_number',
         'npwp',
+        'profile_picture',
     ];
 }
