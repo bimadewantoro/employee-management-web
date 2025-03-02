@@ -135,7 +135,10 @@ class EmployeeResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('gender')
                     ->label('Jenis Kelamin')
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(function ($state) {
+                        return $state === 'Male' ? 'L' : 'P';
+                    }),
                 Tables\Columns\TextColumn::make('group')
                     ->label('Golongan')
                     ->sortable(),
