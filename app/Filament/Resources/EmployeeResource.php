@@ -55,7 +55,8 @@ class EmployeeResource extends Resource
                 Forms\Components\Select::make('group')
                     ->label('Golongan')
                     ->required()
-                    ->options(GroupList::class),
+                    ->options(GroupList::class)
+                    ->searchable(),
                 Forms\Components\Select::make('echelon')
                     ->label('Eselon')
                     ->required()
@@ -97,38 +98,46 @@ class EmployeeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nama')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('birth_place')
                     ->label('Tempat Lahir')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('birth_date')
                     ->label('Tanggal Lahir')
                     ->date()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('address')
                     ->label('Alamat')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('gender')
                     ->label('Jenis Kelamin')
-                    ->searchable(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('group')
                     ->label('Golongan')
-                    ->searchable(),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('echelon')
                     ->label('Eselon')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('position')
                     ->label('Jabatan')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('place_of_duty')
                     ->label('Tempat Tugas')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('religion')
                     ->label('Agama')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('work_unit')
                     ->label('Unit Kerja')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('phone_number')
                     ->label('Nomor Telepon')
                     ->searchable(),
